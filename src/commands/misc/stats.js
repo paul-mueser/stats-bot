@@ -4,7 +4,7 @@ const quoteMessageHandler = require('../../handlers/quoteMessageHandler');
 
 module.exports = {
     callback: async (client, interaction) => {
-        const allMessages = await fetchAllMessages(client, "1208019091848171540");
+        const allMessages = await fetchAllMessages(client, interaction.guild.channels.cache.find(channel => channel.name === 'zitate').id);
 
         const messageData = await quoteMessageHandler(allMessages);
 
