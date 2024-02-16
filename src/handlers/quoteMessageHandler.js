@@ -4,6 +4,7 @@ module.exports = async (messages) => {
     const messageCount = messages.length;
     const maxCounter = 15;
     let timeString = "";
+    let leaderboardString = "";
 
     for (const message of messages) {
         timeData[message.createdAt.getHours()] += 1; // update count for hour of the message
@@ -30,5 +31,9 @@ module.exports = async (messages) => {
 
     const sortedLeaderboard = new Map([...leaderboard.entries()].sort((a, b) => b[1] - a[1]));
 
-    return {timeString, sortedLeaderboard};
+    for (const key of sortedLeaderboard.keys()) {
+        leaderboardString += key + ": " + sortedLeaderboard.get(key) + "\n";
+    }
+
+    return {timeString, leaderboardString};
 };

@@ -8,9 +8,9 @@ module.exports = {
 
         const messageData = await quoteMessageHandler(allMessages);
 
-        for (const key of messageData.sortedLeaderboard.keys()) {
-            console.log(key + " : " + messageData.sortedLeaderboard.get(key));
-        }
+        // for (const key of messageData.sortedLeaderboard.keys()) {
+        //     console.log(key + " : " + messageData.sortedLeaderboard.get(key));
+        // }
 
         // todo put everything in one string, maybe already in handler
 
@@ -20,6 +20,10 @@ module.exports = {
             .addFields({
                 name: "Uhrzeit",
                 value: messageData.timeString,
+                inline: true,
+            }, {
+                name: "Geistiger Dünschiss",
+                value: messageData.leaderboardString,
                 inline: true,
             }); // todo change color
 
