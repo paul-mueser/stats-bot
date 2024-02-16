@@ -18,5 +18,5 @@ module.exports = async (client, channelId) => {
             });
     }
 
-    console.log(messages);  // Print all messages
+    return messages;
 };
