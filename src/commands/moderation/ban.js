@@ -60,6 +60,6 @@ module.exports = {
             type: ApplicationCommandOptionType.String,
         },
     ],
-    permissionsRequired: [PermissionFlagsBits.Administrator],
-    botPermissions: [PermissionFlagsBits.Administrator],
+    permissionsRequired: [PermissionFlagsBits.BanMembers],
+    botPermissions: [PermissionFlagsBits.BanMembers],
 }
