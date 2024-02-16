@@ -6,12 +6,7 @@ module.exports = {
     callback: async (client, interaction) => {
         const allMessages = await fetchAllMessages(client, "1208019091848171540");
 
-        const messageData = quoteMessageHandler(allMessages);
-
-        for (let i = 0; i < 24; i++) {
-            // todo maybe add leading 0 to hours
-            console.log(i + " Uhr: " + messageData.timeData[i]);
-        }
+        const messageData = await quoteMessageHandler(allMessages);
 
         for (const key of messageData.sortedLeaderboard.keys()) {
             console.log(key + " : " + messageData.sortedLeaderboard.get(key));
@@ -21,7 +16,12 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle("Zitat Statistiken")
-            .setColor(0x0000FF); // todo change color
+            .setColor(0x0000FF)
+            .addFields({
+                name: "Uhrzeit",
+                value: messageData.timeString,
+                inline: true,
+            }); // todo change color
 
         interaction.reply({embeds: [embed]});
     },
