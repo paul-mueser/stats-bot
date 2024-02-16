@@ -2,7 +2,7 @@ module.exports = async (messages) => {
     const timeData = Array(24).fill(0);
     const leaderboard = new Map();
     const messageCount = messages.length;
-    const maxCounter = 15;
+    const maxCounter = 24;
     let timeString = "";
     let leaderboardString = "";
 
