@@ -1,3 +1,4 @@
+const {EmbedBuilder} = require('discord.js');
 const fetchAllMessages = require('../../utils/fetchAllMessages');
 const quoteMessageHandler = require('../../handlers/quoteMessageHandler');
 
@@ -16,7 +17,13 @@ module.exports = {
             console.log(key + " : " + messageData.sortedLeaderboard.get(key));
         }
 
-        interaction.reply("Success");
+        // todo put everything in one string, maybe already in handler
+
+        const embed = new EmbedBuilder()
+            .setTitle("Zitat Statistiken")
+            .setColor(0x0000FF); // todo change color
+
+        interaction.reply({embeds: [embed]});
     },
 
     name: 'stats',
