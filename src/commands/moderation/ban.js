@@ -20,9 +20,9 @@ module.exports = {
             return;
         }
 
-        const targetUserRolePosition = targetUser.roles.highest.position;
-        const requestUserRolePosition = interaction.member.roles.highest.position;
-        const botRolePosition = interaction.guild.members.me.roles.highest.position;
+        const targetUserRolePosition = targetUser.roles.highest.position; // Highest role of the target user
+        const requestUserRolePosition = interaction.member.roles.highest.position; // Highest role of the user running the cmd
+        const botRolePosition = interaction.guild.members.me.roles.highest.position; // Highest role of the bot
 
         if (targetUserRolePosition >= requestUserRolePosition) {
             await interaction.editReply("You can't ban that user because they have the same/higher role than you.");
@@ -34,32 +34,31 @@ module.exports = {
             return;
         }
 
+        // Ban the targetUser
         try {
             await targetUser.ban({reason});
             await interaction.editReply(`User ${targetUser} was banned\nReason: ${reason}`);
         } catch (error) {
-            console.log(`There was an error when banning: ${error}`)
+            console.log(`There was an error when banning: ${error}`);
         }
     },
 
-    deleted: true,
     name: 'ban',
-    description: 'Bans a member from the server.',
-    // devOnly: Boolean,
-    // testOnly: Boolean,
+    description: 'Bans a member from this server.',
+    devOnly: true,
     options: [
         {
             name: 'target-user',
-            description: 'The user to ban.',
-            required: true,
+            description: 'The user you want to ban.',
             type: ApplicationCommandOptionType.Mentionable,
+            required: true,
         },
         {
             name: 'reason',
-            description: 'The reason for banning.',
+            description: 'The reason you want to ban.',
             type: ApplicationCommandOptionType.String,
         },
     ],
     permissionsRequired: [PermissionFlagsBits.BanMembers],
     botPermissions: [PermissionFlagsBits.BanMembers],
-}
+};

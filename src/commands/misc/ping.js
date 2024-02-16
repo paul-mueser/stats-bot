@@ -1,10 +1,6 @@
 module.exports = {
     name: 'ping',
     description: 'Replies with the bot ping!',
-    // devOnly: Boolean,
-    // testOnly: Boolean,
-    // options: Object[],
-    // deleted: Boolean,
 
     callback: async (client, interaction) => {
         await interaction.deferReply();
@@ -17,4 +13,4 @@ module.exports = {
             `Pong! Client ${ping}ms | Websocket: ${client.ws.ping}ms`
         );
     },
-}
+};
