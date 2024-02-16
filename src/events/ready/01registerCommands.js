@@ -5,7 +5,7 @@ const getLocalCommands = require('../../utils/getLocalCommands');
 
 module.exports = async (client) => {
     for (let guildId of client.guilds.cache.map(g => g.id)) {
-        if (testServer) {
+        if (process.argv[2] === '--test') {
             guildId = testServer;
         }
         try {
@@ -52,7 +52,7 @@ module.exports = async (client) => {
         } catch (error) {
             console.log(`There was an error: ${error}`);
         }
-        if (testServer) {
+        if (process.argv[2] === '--test') {
             return;
         }
     }
