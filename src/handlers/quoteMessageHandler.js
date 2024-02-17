@@ -29,7 +29,8 @@ module.exports = async (messages) => {
         if (i < 10) {
             timeString += "0";
         }
-        timeString += i + " Uhr: " + "I".repeat(data / messageCount * maxCounter) + "\n";
+        //timeString += i + " Uhr: " + "I".repeat(data / messageCount * maxCounter) + "\n";
+        timeString += i + " Uhr: " + data + "\n";
     }
 
     const sortedLeaderboard = new Map([...leaderboard.entries()].sort((a, b) => b[1] - a[1]));
