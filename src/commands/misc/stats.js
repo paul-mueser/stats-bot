@@ -8,12 +8,6 @@ module.exports = {
 
         const messageData = await quoteMessageHandler(allMessages);
 
-        // for (const key of messageData.sortedLeaderboard.keys()) {
-        //     console.log(key + " : " + messageData.sortedLeaderboard.get(key));
-        // }
-
-        // todo put everything in one string, maybe already in handler
-
         const embed = new EmbedBuilder()
             .setTitle("Zitat Statistiken")
             .setColor(0x0000FF)
