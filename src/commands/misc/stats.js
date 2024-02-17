@@ -10,7 +10,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle("Zitat Statistiken")
-            .setColor(0x0000FF)
+            .setColor(0x9361e4)
             .addFields({
                 name: "Uhrzeit",
                 value: messageData.timeString,
