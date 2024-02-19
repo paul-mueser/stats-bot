@@ -16,7 +16,7 @@ module.exports = {
                 value: messageData.timeString,
                 inline: true,
             }, {
-                name: "Geistiger Dünschiss",
+                name: "Geistige Tiefflieger",
                 value: messageData.leaderboardString,
                 inline: true,
             });

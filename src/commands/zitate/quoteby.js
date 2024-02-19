@@ -10,7 +10,7 @@ module.exports = {
         const messageData = await quoteContentHandler(allMessages, author);
 
         const embed = new EmbedBuilder()
-            .setTitle(`Geistiger Dünschiss von ${author}`)
+            .setTitle(`Geistige Tiefflieger von ${author}`)
             .setDescription(messageData)
             .setColor(0x9361e4);
 
