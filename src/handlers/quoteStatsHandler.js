@@ -1,3 +1,5 @@
+const divideQuote = require('../utils/divideQuote');
+
 module.exports = async (messages) => {
     const timeData = Array(24).fill(0);
     const leaderboard = new Map();
@@ -9,18 +11,25 @@ module.exports = async (messages) => {
     for (const message of messages) {
         timeData[message.createdAt.getHours()] += 1; // update count for hour of the message
 
-        let name = message.content;
-        name = name.substring(name.indexOf("~") + 1).trimStart();
-        name = name.substring(0, name.indexOf(" "));
-        if (name.includes(",")) {
-            name = name.substring(0, name.indexOf(","));
+        let content = message.content;
+        const barIndex = content.indexOf("|") > 0 ? content.indexOf("|") : content.length;
+        content = content.substring(0, barIndex);
+        let parts = [content];
+        if (content.indexOf("_") > -1) {
+            parts = content.split("_");
         }
+        for (const part of parts) {
+            if (part === null) {
+                continue;
+            }
+            const quoteData = divideQuote(part);
 
-        if (leaderboard.has(name)) {
-            const oldVal = leaderboard.get(name);
-            leaderboard.set(name, oldVal + 1);
-        } else {
-            leaderboard.set(name, 1);
+            if (leaderboard.has(quoteData.author)) {
+                const oldVal = leaderboard.get(quoteData.author);
+                leaderboard.set(quoteData.author, oldVal + 1);
+            } else {
+                leaderboard.set(quoteData.author, 1);
+            }
         }
     }
 

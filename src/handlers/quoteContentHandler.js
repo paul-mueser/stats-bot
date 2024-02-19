@@ -1,18 +1,25 @@
+const divideQuote = require("../utils/divideQuote");
 module.exports = async (messages, author) => {
     let returnValue = "";
 
     for (const message of messages) {
-
-        let name = message.content;
-        const tildIndex = name.indexOf("~");
-        name = name.substring(tildIndex + 1).trimStart();
-        name = name.substring(0, name.indexOf(" "));
-        if (name.includes(",")) {
-            name = name.substring(0, name.indexOf(","));
+        const msg = message.content;
+        const barIndex = msg.indexOf("|") > 0 ? msg.indexOf("|") : msg.length;
+        let content = msg.substring(0, barIndex).trim();
+        let parts = [content];
+        if (content.indexOf("_") > -1) {
+            parts = content.split("_");
         }
+        for (const part of parts) {
+            if (part === null) {
+                continue;
+            }
+            const quoteData = divideQuote(part);
 
-        if (name === author) {
-            returnValue += message.content + "\n";
+            if (quoteData.author === author) {
+                returnValue += msg + "\n";
+                break;
+            }
         }
     }
 
