@@ -11,7 +11,9 @@ module.exports = async (messages) => {
 
         let name = message.content;
         name = name.substring(name.indexOf("~") + 1).trimStart();
-        name = name.substring(0, name.indexOf(" "));
+        if (name.charAt(0) === " ") {
+            name = name.substring(0, name.indexOf(" "));
+        }
         if (name.includes(",")) {
             name = name.substring(0, name.indexOf(","));
         }
