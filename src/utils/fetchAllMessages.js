@@ -5,7 +5,9 @@ module.exports = async (client, channelId) => {
     // Create message pointer
     let message = await channel.messages
         .fetch({ limit: 1 })
-        .then(messagePage => (messagePage.size === 1 ? messagePage.at(0) : null));
+        .then(messagePage => (messagePage.size === 1 ? messagePage.first() : null));
+
+    messages.push(message);
 
     while (message) {
         await channel.messages
@@ -14,7 +16,7 @@ module.exports = async (client, channelId) => {
                 messagePage.forEach(msg => messages.push(msg));
 
                 // Update our message pointer to be the last message on the page of messages
-                message = 0 < messagePage.size ? messagePage.at(messagePage.size - 1) : null;
+                message = 0 < messagePage.size ? null : messagePage.last();
             });
     }
 
