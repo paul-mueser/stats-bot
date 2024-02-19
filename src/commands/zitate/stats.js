@@ -19,7 +19,7 @@ module.exports = {
                 name: "Geistiger Dünschiss",
                 value: messageData.leaderboardString,
                 inline: true,
-            }); // todo change color
+            });
 
         interaction.reply({embeds: [embed]});
     },

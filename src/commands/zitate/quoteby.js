@@ -12,7 +12,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle(`Geistiger Dünschiss von ${author}`)
             .setDescription(messageData)
-            .setColor(0x9361e4); // todo change color
+            .setColor(0x9361e4);
 
         interaction.reply({embeds: [embed]});
     },
