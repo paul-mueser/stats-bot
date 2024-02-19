@@ -1,6 +1,7 @@
 const divideQuote = require("../utils/divideQuote");
 module.exports = async (messages, author) => {
     let returnValue = "";
+    const quotes = [];
 
     for (const message of messages) {
         const msg = message.content;
@@ -17,10 +18,16 @@ module.exports = async (messages, author) => {
             const quoteData = divideQuote(part);
 
             if (quoteData.author === author) {
-                returnValue += msg + "\n";
+                quotes.push(msg);
                 break;
             }
         }
+    }
+
+    quotes.reverse();
+
+    for (const quote of quotes) {
+        returnValue += quote + "\n\n";
     }
 
     return returnValue;
