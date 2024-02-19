@@ -25,5 +25,5 @@ module.exports = {
     },
 
     name: 'stats',
-    description: 'Replies with the stats in "Zitate".',
+    description: 'Replies with the stats of "Zitate".',
 };
