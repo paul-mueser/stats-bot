@@ -11,7 +11,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle("Zitat Autoren Statistik")
             .setDescription(messageData)
-            .setColor(0x9361e4); // todo change color
+            .setColor(0x9361e4);
 
         interaction.reply({embeds: [embed]});
     },

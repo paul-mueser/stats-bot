@@ -1,23 +1,23 @@
 module.exports = async (messages) => {
     const leaderboard = new Map();
-    const messageCount = messages.length;
-    const maxCounter = 24;
     let leaderboardString = "";
 
     for (const message of messages) {
-        let name = message.member === null ? message.author.displayName : message.member.displayName;
-        if (leaderboard.has(name)) {
-            const oldVal = leaderboard.get(name);
-            leaderboard.set(name, oldVal + 1);
+        const author = message.author;
+        const name = (await message.guild.members.fetch(message.author)).displayName;
+        if (leaderboard.has(author)) {
+            const val = leaderboard.get(author).val + 1;
+            leaderboard.set(author, {name, val});
         } else {
-            leaderboard.set(name, 1);
+            const val = 1;
+            leaderboard.set(author, {name, val});
         }
     }
 
-    const sortedLeaderboard = new Map([...leaderboard.entries()].sort((a, b) => b[1] - a[1]));
+    const sortedLeaderboard = new Map([...leaderboard.entries()].sort((a, b) => b[1].val - a[1].val));
 
     for (const key of sortedLeaderboard.keys()) {
-        leaderboardString += key + ": " + sortedLeaderboard.get(key) + "\n";
+        leaderboardString += sortedLeaderboard.get(key).name + ": " + sortedLeaderboard.get(key).val + "\n";
     }
 
     return leaderboardString;
