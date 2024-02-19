@@ -1,12 +1,12 @@
 const {EmbedBuilder} = require('discord.js');
 const fetchAllMessages = require('../../utils/fetchAllMessages');
-const quoteMessageHandler = require('../../handlers/quoteMessageHandler');
+const quoteStatsHandler = require('../../handlers/quoteStatsHandler');
 
 module.exports = {
     callback: async (client, interaction) => {
         const allMessages = await fetchAllMessages(client, interaction.guild.channels.cache.find(channel => channel.name === 'zitate').id);
 
-        const messageData = await quoteMessageHandler(allMessages);
+        const messageData = await quoteStatsHandler(allMessages);
 
         const embed = new EmbedBuilder()
             .setTitle("Zitat Statistiken")
