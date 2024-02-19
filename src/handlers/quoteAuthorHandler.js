@@ -4,20 +4,18 @@ module.exports = async (messages) => {
 
     for (const message of messages) {
         const author = message.author;
-        const name = (await message.guild.members.fetch(message.author)).displayName;
         if (leaderboard.has(author)) {
-            const val = leaderboard.get(author).val + 1;
-            leaderboard.set(author, {name, val});
+            const val = leaderboard.get(author) + 1;
+            leaderboard.set(author, val);
         } else {
-            const val = 1;
-            leaderboard.set(author, {name, val});
+            leaderboard.set(author, 1);
         }
     }
 
-    const sortedLeaderboard = new Map([...leaderboard.entries()].sort((a, b) => b[1].val - a[1].val));
+    const sortedLeaderboard = new Map([...leaderboard.entries()].sort((a, b) => b[1] - a[1]));
 
     for (const key of sortedLeaderboard.keys()) {
-        leaderboardString += sortedLeaderboard.get(key).name + ": " + sortedLeaderboard.get(key).val + "\n";
+        leaderboardString += `${key}: ` + sortedLeaderboard.get(key) + "\n";
     }
 
     return leaderboardString;
