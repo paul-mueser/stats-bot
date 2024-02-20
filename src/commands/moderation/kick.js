@@ -64,7 +64,6 @@ module.exports = {
 
     name: 'kick',
     description: 'Kicks a member from this server.',
-    devOnly: true,
     options: [
         {
             name: 'target-user',
