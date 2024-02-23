@@ -40,6 +40,15 @@ Now you can run the bot with the argument `--test` to start the bot in
 development mode, where new commands only get registered on your testServer.  
 Pay attention, that the already registered commands will still be available on all servers.
 
+## [](#running)Running the bot
+To run the bot, you need to open a terminal in the root directory of the project and run the command
+`npm run src/index.js`.
+
+If you want to run the bot in development mode, you can run the command `npm run src/index.js --test`.
+
+If you don't want to develop the bot, you can also run the bot as a [docker container from docker hub](https://hub.docker.com/r/paulmueser/statsbotdocker)
+with the command `docker run -d --env TOKEN=xxx paulmueser/statsbotdocker`.
+
 ## [](#commands)Commands
 
 ### [](#misc)Misc
