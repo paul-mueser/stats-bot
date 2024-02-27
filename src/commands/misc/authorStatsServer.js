@@ -8,8 +8,8 @@ module.exports = {
         let leaderboardString = "";
 
         let ignoredChannels = [];
-        if (interaction.options.getString('ignored channels')) {
-            ignoredChannels = interaction.options.getString('ignored channels').split(',').map(channel => channel.trim());
+        if (interaction.options.getString('ignored-channels')) {
+            ignoredChannels = interaction.options.getString('ignored-channels').split(',').map(channel => channel.trim());
         }
 
         for (const channel of interaction.guild.channels.cache) {
@@ -17,7 +17,7 @@ module.exports = {
                 continue;
             }
 
-            const allMessages = await fetchAllMessages(client, channel[1].id);
+            const allMessages = await fetchAllMessages(client, channel[0]);
 
             const messageData = await serverAuthorStatsHandler(allMessages);
 
@@ -48,11 +48,11 @@ module.exports = {
         interaction.reply({embeds: [embed]});
     },
 
-    name: 'authorStatsServer',
+    name: 'ass',
     description: 'Replies with the stats of all authors of the server.',
     options: [
         {
-            name: 'ignored channels',
+            name: 'ignored-channels',
             description: 'List all channel names to ignore here.',
             type: ApplicationCommandOptionType.String,
         },

@@ -3,9 +3,13 @@ module.exports = async (client, channelId) => {
     let messages = [];
 
     // Create message pointer
-    let message = await channel.messages
-        .fetch({ limit: 1 })
-        .then(messagePage => (messagePage.size === 1 ? messagePage.first() : null));
+    let message = await channel.messages;
+    if (message) {
+        message = message.fetch({ limit: 1 })
+            .then(messagePage => (messagePage.size === 1 ? messagePage.first() : null));
+    } else {
+        return messages;
+    }
 
     messages.push(message);
 

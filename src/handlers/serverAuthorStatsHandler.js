@@ -1,8 +1,9 @@
 module.exports = async (messages) => {
     const leaderboard = new Map();
-    let leaderboardString = "";
 
     for (const message of messages) {
+        if (!message) continue;
+        if (!message.author) continue;
         const author = message.author;
         if (leaderboard.has(author)) {
             const val = leaderboard.get(author) + 1;
