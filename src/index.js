@@ -12,6 +12,26 @@ const client = new Client({
     ],
 });
 
-eventHandler(client);
+var mysql = require('mysql2');
+
+var con = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+});
+
+(async () => {
+    try {
+        await con.connect(function(err) {
+            if (err) throw err;
+            console.log("Connected!");
+        });
+
+        eventHandler(client);
+    } catch (error) {
+        console.error(`Error: ${error}`);
+    }
+})();
+
 
 client.login(process.env.TOKEN);
