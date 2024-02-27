@@ -4,7 +4,8 @@ const serverAuthorStatsHandler = require('../../handlers/serverAuthorStatsHandle
 
 module.exports = {
     callback: async (client, interaction) => {
-        let retVal = "";
+        let retVal = new Map();
+        let leaderboardString = "";
 
         let ignoredChannels = [];
         if (interaction.options.getString('ignored channels')) {
@@ -20,7 +21,20 @@ module.exports = {
 
             const messageData = await serverAuthorStatsHandler(allMessages);
 
-            retVal += messageData + "\n";
+            for (const key of messageData.keys()) {
+                if (retVal.has(key)) {
+                    const val = retVal.get(key) + messageData.get(key);
+                    retVal.set(key, val);
+                } else {
+                    retVal.set(key, messageData.get(key));
+                }
+            }
+        }
+
+        const sortedLeaderboard = new Map([...retVal.entries()].sort((a, b) => b[1] - a[1]));
+
+        for (const key of sortedLeaderboard.keys()) {
+            leaderboardString += `${key}: ` + sortedLeaderboard.get(key) + "\n";
         }
 
         const embed = new EmbedBuilder()
@@ -28,7 +42,7 @@ module.exports = {
             .setColor(0x9361e4)
             .addFields({
                 name: "Author Stats",
-                value: retVal,
+                value: leaderboardString,
             });
 
         interaction.reply({embeds: [embed]});
