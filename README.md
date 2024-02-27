@@ -18,17 +18,20 @@ per hour of the day.
 ### [](#prerequisites)Prerequisites
 
 To run the bot, you need to have Node.js installed on your machine. You can download it from the official
-[Node.js](https://nodejs.org/en/) website.
+[Node.js](https://nodejs.org/en/) website. You also need to have a MySQL database running, where the bot can store the data.
 
 ### [](#setup)Setup
 
 To set up the bot, you need to create a new application on the
 [Discord Developer Portal](https://discord.com/developers/applications),
 create a `.env` file in the root directory of the project and copy the
-token of the bot into this file like this:
+token of the bot and your database connection into the file like this:
 
 ```
 TOKEN=xxx
+DB_HOST=xxx
+DB_USER=xxx
+DB_PASSWORD=xxx
 ```
 
 ### [](#developing-and-testing)Developing & testing
