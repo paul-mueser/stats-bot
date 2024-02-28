@@ -14,13 +14,14 @@ module.exports = {
             ignoredChannels = interaction.options.getString('ignored-channels').split(',').map(channel => channel.trim());
         }
 
+        let toGo = interaction.guild.channels.cache.size;
+
         for (const channel of interaction.guild.channels.cache) {
+            console.log(toGo-- + " channels to go");
             if (ignoredChannels.includes(channel[1].name)) {
-                console.log(channel[1].name + " skipped");
                 continue;
             }
             if (channel[1].type !== 0 && channel[1].type !== 2) {
-                console.log(channel[1].name + " skipped");
                 continue;
             }
 
@@ -42,14 +43,13 @@ module.exports = {
                     retVal.set(key, messageData.get(key));
                 }
             }
-            console.log(channel[1].name + " done");
         }
+        console.log("Channels done");
 
         const sortedLeaderboard = new Map([...retVal.entries()].sort((a, b) => b[1] - a[1]));
 
         for (const key of sortedLeaderboard.keys()) {
             if (!await interaction.guild.members.fetch(key.id).then(() => true).catch(() => false)) {
-                console.log("User not found: " + key);
                 continue;
             }
 
