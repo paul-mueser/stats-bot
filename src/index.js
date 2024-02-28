@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const {Client, GatewayIntentBits} = require('discord.js');
 const eventHandler = require('./handlers/eventHandler');
+const mysql = require('mysql2');
 
 const client = new Client({
     intents: [
@@ -12,9 +13,7 @@ const client = new Client({
     ],
 });
 
-var mysql = require('mysql2');
-
-var con = mysql.createConnection({
+const con = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
@@ -27,11 +26,13 @@ var con = mysql.createConnection({
             console.log("Connected!");
         });
 
-        eventHandler(client);
+        con.end();
     } catch (error) {
         console.error(`Error: ${error}`);
     }
 })();
+
+eventHandler(client);
 
 
 client.login(process.env.TOKEN);
