@@ -1,10 +1,12 @@
 const {EmbedBuilder, ApplicationCommandOptionType} = require('discord.js');
 const fetchAllMessages = require('../../utils/fetchAllMessages');
-const serverAuthorStatsHandler = require('../../handlers/serverAuthorStatsHandler');
+const serverAuthorStatsHandler = require('../../handlers/leaderboardHandler');
 
 module.exports = {
     callback: async (client, interaction) => {
+        interaction.deferReply();
         let retVal = new Map();
+        let authorString = "";
         let leaderboardString = "";
 
         let ignoredChannels = [];
@@ -14,6 +16,11 @@ module.exports = {
 
         for (const channel of interaction.guild.channels.cache) {
             if (ignoredChannels.includes(channel[1].name)) {
+                console.log(channel[1].name + " skipped");
+                continue;
+            }
+            if (channel[1].type !== 0 && channel[1].type !== 2) {
+                console.log(channel[1].name + " skipped");
                 continue;
             }
 
@@ -22,34 +29,52 @@ module.exports = {
             const messageData = await serverAuthorStatsHandler(allMessages);
 
             for (const key of messageData.keys()) {
-                if (retVal.has(key)) {
-                    const val = retVal.get(key) + messageData.get(key);
-                    retVal.set(key, val);
-                } else {
+                let found = false;
+                for (const retKey of retVal.keys()) {
+                    if (key.id === retKey.id) {
+                        const val = retVal.get(retKey) + messageData.get(key);
+                        retVal.set(retKey, val);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
                     retVal.set(key, messageData.get(key));
                 }
             }
+            console.log(channel[1].name + " done");
         }
 
         const sortedLeaderboard = new Map([...retVal.entries()].sort((a, b) => b[1] - a[1]));
 
         for (const key of sortedLeaderboard.keys()) {
-            leaderboardString += `${key}: ` + sortedLeaderboard.get(key) + "\n";
+            if (!await interaction.guild.members.fetch(key.id).then(() => true).catch(() => false)) {
+                console.log("User not found: " + key);
+                continue;
+            }
+
+            authorString += `${key}:\n`;
+            leaderboardString += sortedLeaderboard.get(key) + "\n";
         }
 
         const embed = new EmbedBuilder()
-            .setTitle("Zitat Statistiken")
+            .setTitle("Leaderboard")
             .setColor(0x9361e4)
             .addFields({
-                name: "Author Stats",
+                name: "Author",
+                value: authorString,
+                inline: true,
+            }, {
+                name: "Message count",
                 value: leaderboardString,
+                inline: true,
             });
 
-        interaction.reply({embeds: [embed]});
+        await interaction.editReply({embeds: [embed]});
     },
 
-    name: 'ass',
-    description: 'Replies with the stats of all authors of the server.',
+    name: 'leaderboard',
+    description: 'Replies with leaderboard of written messages on the server.',
     options: [
         {
             name: 'ignored-channels',
