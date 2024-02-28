@@ -50,7 +50,7 @@ To run the bot, you need to open a terminal in the root directory of the project
 If you want to run the bot in development mode, you can run the command `npm run src/index.js --test`.
 
 If you don't want to develop the bot, you can also run the bot as a [docker container from docker hub](https://hub.docker.com/r/paulmueser/statsbotdocker)
-with the command `docker run -d --env TOKEN=xxx paulmueser/statsbotdocker`.
+with the command `docker run -d --e TOKEN=xxx --e DB_HOST=xxx --e DB_USER=xxx --e DB_PASSWORD=xxx paulmueser/statsbotdocker`.
 
 ## [](#commands)Commands
 
