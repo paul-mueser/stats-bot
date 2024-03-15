@@ -1,4 +1,4 @@
-const {EmbedBuilder, ApplicationCommandOptionType} = require('discord.js');
+const {ApplicationCommandOptionType} = require('discord.js');
 
 module.exports = {
     callback: async (client, interaction) => {
