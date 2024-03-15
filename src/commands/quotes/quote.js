@@ -12,14 +12,15 @@ module.exports = {
         await interaction.reply('Quote added.');
         await interaction.deleteReply();
 
+        const msg = "<@" + interaction.user.id + '>: "' + content + '" ~ [' + author;
+
         if (content2 && author2) {
-            await interaction.channel.send('"' + content + '" ~ [' + author + '] _ "' + content2 + '" ~ [' + author2 + '] | ' + date);
+            interaction.channel.send(msg + '] _ "' + content2 + '" ~ [' + author2 + '] | ' + date);
             return;
         }
-        await interaction.channel.send('"' + content + '" ~ [' + author + '] | ' + date);
+        interaction.channel.send(msg + '] | ' + date);
     },
 
-    deleted: true,
     name: 'quote',
     description: 'Replies with the quotes of a specific person.',
     options: [

@@ -3,7 +3,13 @@ module.exports = async (messages) => {
     let leaderboardString = "";
 
     for (const message of messages) {
-        const author = message.author;
+        let author;
+        if (!message.author) continue;
+        if (message.author.id === global.botId) {
+            author = message.content.substring(0, message.content.indexOf(':'));
+        } else {
+            author = "<@" + message.author.id + ">";
+        }
         if (leaderboard.has(author)) {
             const val = leaderboard.get(author) + 1;
             leaderboard.set(author, val);

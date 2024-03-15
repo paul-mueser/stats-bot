@@ -1,12 +1,16 @@
 const divideQuote = require("../utils/divideQuote");
+
 module.exports = async (messages, author) => {
     let returnValue = "";
     const quotes = [];
 
     for (const message of messages) {
         if (!message) continue;
-        const msg = message.content;
+        let msg = message.content;
         if (!msg) continue;
+        if (message.author.id === global.botId) {
+            msg = msg.substring(msg.indexOf(":") + 1).trim();
+        }
         const barIndex = msg.indexOf("|") > 0 ? msg.indexOf("|") : msg.length;
         let content = msg.substring(0, barIndex).trim();
         let parts = [content];

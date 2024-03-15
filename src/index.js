@@ -14,4 +14,6 @@ const client = new Client({
 
 eventHandler(client);
 
+global.botId = process.env.BOT_ID;
+
 client.login(process.env.TOKEN);
