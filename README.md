@@ -29,6 +29,7 @@ token of the bot and your database connection into the file like this:
 
 ```
 TOKEN=xxx
+BOT_ID=xxx
 ```
 
 ### [](#developing-and-testing)Developing & testing
@@ -47,7 +48,7 @@ To run the bot, you need to open a terminal in the root directory of the project
 If you want to run the bot in development mode, you can run the command `npm run src/index.js --test`.
 
 If you don't want to develop the bot, you can also run the bot as a [docker container from docker hub](https://hub.docker.com/r/paulmueser/statsbotdocker)
-with the command `docker run -d -e TOKEN=xxx paulmueser/statsbotdocker`.
+with the command `docker run -d -e TOKEN=xxx -e BOT_ID=xxx paulmueser/statsbotdocker`.
 
 ## [](#commands)Commands
 
