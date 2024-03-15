@@ -18,7 +18,7 @@ per hour of the day.
 ### [](#prerequisites)Prerequisites
 
 To run the bot, you need to have Node.js installed on your machine. You can download it from the official
-[Node.js](https://nodejs.org/en/) website. You also need to have a MySQL database running, where the bot can store the data.
+[Node.js](https://nodejs.org/en/) website.
 
 ### [](#setup)Setup
 
@@ -29,9 +29,6 @@ token of the bot and your database connection into the file like this:
 
 ```
 TOKEN=xxx
-DB_HOST=xxx
-DB_USER=xxx
-DB_PASSWORD=xxx
 ```
 
 ### [](#developing-and-testing)Developing & testing
@@ -50,7 +47,7 @@ To run the bot, you need to open a terminal in the root directory of the project
 If you want to run the bot in development mode, you can run the command `npm run src/index.js --test`.
 
 If you don't want to develop the bot, you can also run the bot as a [docker container from docker hub](https://hub.docker.com/r/paulmueser/statsbotdocker)
-with the command `docker run -d -e TOKEN=xxx -e DB_HOST=xxx -e DB_USER=xxx -e DB_PASSWORD=xxx paulmueser/statsbotdocker`.
+with the command `docker run -d -e TOKEN=xxx paulmueser/statsbotdocker`.
 
 ## [](#commands)Commands
 
