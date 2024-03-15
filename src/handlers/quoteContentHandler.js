@@ -4,7 +4,9 @@ module.exports = async (messages, author) => {
     const quotes = [];
 
     for (const message of messages) {
+        if (!message) continue;
         const msg = message.content;
+        if (!msg) continue;
         const barIndex = msg.indexOf("|") > 0 ? msg.indexOf("|") : msg.length;
         let content = msg.substring(0, barIndex).trim();
         let parts = [content];

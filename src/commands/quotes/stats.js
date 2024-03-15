@@ -4,6 +4,7 @@ const quoteStatsHandler = require('../../handlers/quoteStatsHandler');
 
 module.exports = {
     callback: async (client, interaction) => {
+        interaction.deferReply();
         const allMessages = await fetchAllMessages(client, interaction.guild.channels.cache.find(channel => channel.name === 'zitate').id);
 
         const messageData = await quoteStatsHandler(allMessages);
@@ -21,7 +22,7 @@ module.exports = {
                 inline: true,
             });
 
-        interaction.reply({embeds: [embed]});
+        await interaction.editReply({embeds: [embed]});
     },
 
     name: 'stats',

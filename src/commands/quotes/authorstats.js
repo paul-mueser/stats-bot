@@ -4,6 +4,7 @@ const {EmbedBuilder} = require("discord.js");
 
 module.exports = {
     callback: async (client, interaction) => {
+        interaction.deferReply();
         const allMessages = await fetchAllMessages(client, interaction.guild.channels.cache.find(channel => channel.name === 'zitate').id);
 
         let messageData = await quoteAuthorHandler(allMessages);
@@ -13,7 +14,7 @@ module.exports = {
             .setDescription(messageData)
             .setColor(0x9361e4);
 
-        interaction.reply({embeds: [embed]});
+        await interaction.editReply({embeds: [embed]});
     },
 
     name: 'authorstats',

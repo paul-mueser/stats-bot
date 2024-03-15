@@ -9,6 +9,7 @@ module.exports = async (messages) => {
     let leaderboardString = "";
 
     for (const message of messages) {
+        if(!message.createdAt) continue;
         timeData[message.createdAt.getHours()] += 1; // update count for hour of the message
 
         let content = message.content;

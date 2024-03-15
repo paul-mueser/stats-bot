@@ -1,17 +1,6 @@
-const {
-    Client,
-    Interaction,
-    ApplicationCommandOptionType,
-    PermissionFlagsBits,
-} = require('discord.js');
+const {ApplicationCommandOptionType, PermissionFlagsBits} = require('discord.js');
 
 module.exports = {
-    /**
-     *
-     * @param {Client} client
-     * @param {Interaction} interaction
-     */
-
     callback: async (client, interaction) => {
         const targetUserId = interaction.options.get('target-user').value;
         const reason =
@@ -27,9 +16,7 @@ module.exports = {
         }
 
         if (targetUser.id === interaction.guild.ownerId) {
-            await interaction.editReply(
-                "You can't kick that user because they're the server owner."
-            );
+            await interaction.editReply("You can't kick that user because they're the server owner.");
             return;
         }
 
@@ -38,25 +25,19 @@ module.exports = {
         const botRolePosition = interaction.guild.members.me.roles.highest.position; // Highest role of the bot
 
         if (targetUserRolePosition >= requestUserRolePosition) {
-            await interaction.editReply(
-                "You can't kick that user because they have the same/higher role than you."
-            );
+            await interaction.editReply("You can't kick that user because they have the same/higher role than you.");
             return;
         }
 
         if (targetUserRolePosition >= botRolePosition) {
-            await interaction.editReply(
-                "I can't kick that user because they have the same/higher role than me."
-            );
+            await interaction.editReply("I can't kick that user because they have the same/higher role than me.");
             return;
         }
 
         // Kick the targetUser
         try {
             await targetUser.kick({ reason });
-            await interaction.editReply(
-                `User ${targetUser} was kicked\nReason: ${reason}`
-            );
+            await interaction.editReply(`User ${targetUser} was kicked\nReason: ${reason}`);
         } catch (error) {
             console.log(`There was an error when kicking: ${error}`);
         }
