@@ -25,7 +25,7 @@ To run the bot, you need to have Node.js installed on your machine. You can down
 To set up the bot, you need to create a new application on the
 [Discord Developer Portal](https://discord.com/developers/applications),
 create a `.env` file in the root directory of the project and copy the
-token of the bot and your database connection into the file like this:
+token of the bot and it's id into the file like this:
 
 ```
 TOKEN=xxx
@@ -54,6 +54,7 @@ with the command `docker run -d -e TOKEN=xxx -e BOT_ID=xxx paulmueser/statsbotdo
 
 ### [](#misc)Misc
 
+- leaderboard - replies with the leaderboard of the whole server
 - ping - Pong!
 
 ### [](#moderation)Moderation
@@ -65,5 +66,6 @@ with the command `docker run -d -e TOKEN=xxx -e BOT_ID=xxx paulmueser/statsbotdo
 ### [](#quotes)Quotes
 
 - authorstats - replies with the authorstats of "Zitate"
+- quote {date} {content} {author} - create a new quote
 - quoteby {author} - replies with the quotes of a specific person
 - stats - replies with the stats of "Zitate"
