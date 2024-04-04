@@ -1,3 +1,7 @@
+![Publish Docker Image](https://github.com/paul-mueser/stats-bot/actions/workflows/docker-image.yml/badge.svg)
+[![GitHub release](https://img.shields.io/github/release/paul-mueser/stats-bot.svg)](https://github.com/paul-mueser/stats-bot/releases)
+[![GitHub license](https://badgen.net/github/license/paul-mueser/stats-bot)](https://github.com/paul-mueser/stats-bot/blob/main/LICENSE)
+
 # Basic discord bot using discord js
 
 ## [](#general)General
