@@ -20,13 +20,12 @@ user and per hour of the day.
 ### [](#prerequisites)Prerequisites
 
 To run the bot, you need to have Node.js installed on your machine. You can download it from the official
-<a href="https://nodejs.org/en/" rel="external nofollow noopener" target="_blank">Node.js
-website</a>.
+[Node.js](https://nodejs.org/en/) website.
 
 ### [](#setup)Setup
 
 To set up the bot, you need to create a new application on the
-<a href="https://discord.com/developers/applications" rel="external nofollow noopener" target="_blank">Discord Developer Portal</a>,
+[Discord Developer Portal](https://discord.com/developers/applications),
 create a `.env` file in the root directory of the project and copy the
 token of the bot and it's id into the file like this:
 
@@ -50,9 +49,7 @@ To run the bot, you need to open a terminal in the root directory of the project
 
 If you want to run the bot in development mode, you can run the command `npm run src/index.js --test`.
 
-If you don't want to develop the bot, you can also run the bot as a
-<a href="https://hub.docker.com/r/paulmueser/statsbotdocker" rel="external nofollow noopener" target="_blank">
-docker container from docker hub</a>
+If you don't want to develop the bot, you can also run the bot as a [docker container from docker hub](https://hub.docker.com/r/paulmueser/statsbotdocker)
 with the command `docker run -d -e TOKEN=xxx -e BOT_ID=xxx paulmueser/statsbotdocker`.
 
 ## [](#commands)Commands
