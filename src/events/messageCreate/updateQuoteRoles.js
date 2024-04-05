@@ -1,11 +1,12 @@
 const fetchAllMessages = require('../../utils/fetchAllMessages');
 const { startOfWeek, endOfWeek } = require('date-fns');
 const divideQuote = require("../../utils/divideQuote");
+const {quoteLeaderRoleName} = require('../../../config.json');
 
 module.exports = async (client, message) => {
     if (!message.inGuild() || message.channel.id !== message.guild.channels.cache.find(channel => channel.name === 'zitate').id) return;
 
-    let role = message.guild.roles.cache.find(role => role.name === "Rüdiger");
+    let role = message.guild.roles.cache.find(role => role.name === quoteLeaderRoleName);
     if (!role) return;
 
     message.guild.roles.create({
@@ -64,7 +65,7 @@ module.exports = async (client, message) => {
     if (author.startsWith('<@') && author.endsWith('>')) {
         author = author.substring(2, author.length - 1);
         let leader = await message.guild.members.cache.get(author);
-        role = message.guild.roles.cache.find(role => role.name === "Rüdiger");
+        role = message.guild.roles.cache.find(role => role.name === quoteLeaderRoleName);
         try {
             await leader.roles.add(role);
         } catch (e) {}
