@@ -1,4 +1,3 @@
-const { Client, Message } = require('discord.js')
 const fetchAllMessages = require('../../utils/fetchAllMessages');
 const { startOfWeek, endOfWeek } = require('date-fns');
 const divideQuote = require("../../utils/divideQuote");
@@ -18,10 +17,7 @@ module.exports = async (client, message) => {
         mentionable: role.mentionable
     });
 
-    console.log(role);
     role.delete('I had to.');
-
-    let leader = message.guild.members.cache.get(message.author.id);
 
     let messages = await fetchAllMessages(client, message.guild.channels.cache.find(channel => channel.name === 'zitate').id);
 
@@ -36,6 +32,10 @@ module.exports = async (client, message) => {
         if (!m.content) continue;
 
         let content = m.content;
+        if (m.author.id === global.botId) {
+            content = content.substring(content.indexOf(":") + 1).trim();
+        }
+
         const barIndex = content.indexOf("|") > 0 ? content.indexOf("|") : content.length;
         content = content.substring(0, barIndex);
         let parts = [content];
@@ -47,20 +47,26 @@ module.exports = async (client, message) => {
                 continue;
             }
             const quoteData = divideQuote(part);
+            let author = quoteData.author;
 
-            if (leaderboard.has(quoteData.author)) {
-                const oldVal = leaderboard.get(quoteData.author);
-                leaderboard.set(quoteData.author, oldVal + 1);
+            if (leaderboard.has(author)) {
+                const oldVal = leaderboard.get(author);
+                leaderboard.set(author, oldVal + 1);
             } else {
-                leaderboard.set(quoteData.author, 1);
+                leaderboard.set(author, 1);
             }
         }
     }
 
     const sortedLeaderboard = new Map([...leaderboard.entries()].sort((a, b) => b[1] - a[1]));
-    const key = sortedLeaderboard.keys()[0];
-    leader = key;
-    // todo leader is author string (who said it) so we need to get the member object from the guild if possible
-    role = message.guild.roles.cache.find(role => role.name === "Rüdiger");
-    //await leader.roles.add(role);
+    let author = sortedLeaderboard.keys().next().value;
+
+    if (author.startsWith('<@') && author.endsWith('>')) {
+        author = author.substring(2, author.length - 1);
+        let leader = await message.guild.members.cache.get(author);
+        role = message.guild.roles.cache.find(role => role.name === "Rüdiger");
+        try {
+            await leader.roles.add(role);
+        } catch (e) {}
+    }
 }
