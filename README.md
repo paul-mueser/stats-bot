@@ -8,26 +8,25 @@
 
 This is a basic Discord bot primarily used for gathering statistics from a channel in a Discord server calles
 "Zitate", where users can post quotes. The bot can do a variety of things, such as counting the number of quotes per
-user and
-per hour of the day.
+user and per hour of the day.
 
 ## [](#features)Features
 
 - Moderation: you can timeout, kick and ban users
-- Quotes: get stats of the authors of the quotes, get all quotes of a specific author and get the general
-  stats
+- Quotes: get stats of the authors of the quotes, get all quotes of a specific author and much more
 
 ## [](#before-starting)Before starting
 
 ### [](#prerequisites)Prerequisites
 
 To run the bot, you need to have Node.js installed on your machine. You can download it from the official
-[Node.js](https://nodejs.org/en/) website.
+<a href="https://nodejs.org/en/" rel="external nofollow noopener" target="_blank">Node.js
+website</a>.
 
 ### [](#setup)Setup
 
 To set up the bot, you need to create a new application on the
-[Discord Developer Portal](https://discord.com/developers/applications),
+<a href="https://discord.com/developers/applications" rel="external nofollow noopener" target="_blank">Discord Developer Portal</a>,
 create a `.env` file in the root directory of the project and copy the
 token of the bot and it's id into the file like this:
 
@@ -38,9 +37,9 @@ BOT_ID=xxx
 
 ### [](#developing-and-testing)Developing & testing
 
-For testing, you can change the `testServer` and `devs` properties in `config.json` file to to your test server id and
-your developers discord
-id's.  
+For testing, you can change the `testServer` and `devs` properties in `config.json` file to your test server id and
+your developers discord id's. There you can also change the `quoteLeaderRoleName`, which is the role for the person
+with the most quotes in the current week.  
 Now you can run the bot with the argument `--test` to start the bot in
 development mode, where new commands only get registered on your testServer.  
 Pay attention, that the already registered commands will still be available on all servers.
@@ -51,7 +50,9 @@ To run the bot, you need to open a terminal in the root directory of the project
 
 If you want to run the bot in development mode, you can run the command `npm run src/index.js --test`.
 
-If you don't want to develop the bot, you can also run the bot as a [docker container from docker hub](https://hub.docker.com/r/paulmueser/statsbotdocker)
+If you don't want to develop the bot, you can also run the bot as a
+<a href="https://hub.docker.com/r/paulmueser/statsbotdocker" rel="external nofollow noopener" target="_blank">
+docker container from docker hub</a>
 with the command `docker run -d -e TOKEN=xxx -e BOT_ID=xxx paulmueser/statsbotdocker`.
 
 ## [](#commands)Commands
