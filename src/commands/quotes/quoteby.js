@@ -8,10 +8,17 @@ module.exports = {
         const allMessages = await fetchAllMessages(client, interaction.guild.channels.cache.find(channel => channel.name === 'zitate').id);
         const author = interaction.options.get('author').value;
 
-        const messageData = await quoteContentHandler(allMessages, author);
+        let actualAuthor = author.trim();
+
+        if (actualAuthor.startsWith('<@') && actualAuthor.endsWith('>')) {
+            actualAuthor = actualAuthor.substring(2, actualAuthor.length - 1);
+            actualAuthor = global.idNamePairs[actualAuthor];
+        }
+
+        const messageData = await quoteContentHandler(allMessages, actualAuthor);
 
         const embed = new EmbedBuilder()
-            .setTitle(`Geistige Tiefflieger von ${author}`)
+            .setTitle(`Geistige Tiefflieger von ${actualAuthor}`)
             .setDescription(messageData)
             .setColor(0x9361e4);
 

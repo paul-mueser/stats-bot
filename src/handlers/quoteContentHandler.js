@@ -27,6 +27,16 @@ module.exports = async (messages, author) => {
                 quotes.push(msg.replaceAll("_",", "));
                 break;
             }
+
+            let actualAuthor = quoteData.author.trim();
+
+            if (actualAuthor.startsWith('<@') && actualAuthor.endsWith('>')) {
+                actualAuthor = actualAuthor.substring(2, actualAuthor.length - 1);
+                if (global.idNamePairs[actualAuthor] === author) {
+                    quotes.push(msg.replaceAll("_",", "));
+                    break;
+                }
+            }
         }
     }
 

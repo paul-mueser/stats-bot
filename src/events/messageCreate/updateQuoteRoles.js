@@ -48,7 +48,7 @@ module.exports = async (client, message) => {
                 continue;
             }
             const quoteData = divideQuote(part);
-            let author = quoteData.author;
+            let author = quoteData.author.trim();
 
             if (leaderboard.has(author)) {
                 const oldVal = leaderboard.get(author);

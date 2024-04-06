@@ -25,11 +25,18 @@ module.exports = async (messages) => {
             }
             const quoteData = divideQuote(part);
 
-            if (leaderboard.has(quoteData.author)) {
-                const oldVal = leaderboard.get(quoteData.author);
-                leaderboard.set(quoteData.author, oldVal + 1);
+            let actualAuthor = quoteData.author.trim();
+
+            if (actualAuthor.startsWith('<@') && actualAuthor.endsWith('>')) {
+                actualAuthor = actualAuthor.substring(2, actualAuthor.length - 1);
+                actualAuthor = global.idNamePairs[actualAuthor];
+            }
+
+            if (leaderboard.has(actualAuthor)) {
+                const oldVal = leaderboard.get(actualAuthor);
+                leaderboard.set(actualAuthor, oldVal + 1);
             } else {
-                leaderboard.set(quoteData.author, 1);
+                leaderboard.set(actualAuthor, 1);
             }
         }
     }

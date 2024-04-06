@@ -15,5 +15,10 @@ const client = new Client({
 eventHandler(client);
 
 global.botId = process.env.BOT_ID;
+if (process.env.ID_NAME_PAIRS) {
+    global.idNamePairs = JSON.parse(process.env.ID_NAME_PAIRS);
+} else {
+    global.idNamePairs = {};
+}
 
 client.login(process.env.TOKEN);
