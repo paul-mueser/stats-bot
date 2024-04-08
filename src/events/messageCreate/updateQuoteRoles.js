@@ -1,7 +1,7 @@
 const fetchAllMessages = require('../../utils/fetchAllMessages');
 const { startOfWeek, endOfWeek } = require('date-fns');
 const divideQuote = require("../../utils/divideQuote");
-const {quoteLeaderRoleName} = require('../../../config.json');
+const { quoteLeaderRoleName } = require('../../../config.json');
 
 module.exports = async (client, message) => {
     if (!message.inGuild() || message.channel.id !== message.guild.channels.cache.find(channel => channel.name === 'zitate').id) return;
