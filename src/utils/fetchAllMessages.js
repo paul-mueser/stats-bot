@@ -20,7 +20,7 @@ module.exports = async (client, channelId) => {
                 messagePage.forEach(msg => messages.push(msg));
 
                 // Update our message pointer to be the last message on the page of messages
-                message = 0 < messagePage.size ? null : messagePage.last();
+                message = 0 >= messagePage.size ? null : messagePage.last();
             });
     }
 
