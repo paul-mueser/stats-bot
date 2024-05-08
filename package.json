@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chartjs-node-canvas": "^4.1.6",
     "date-fns": "^3.6.0",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.4",

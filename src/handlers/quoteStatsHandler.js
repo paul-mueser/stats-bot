@@ -1,4 +1,6 @@
 const divideQuote = require('../utils/divideQuote');
+const createChartImage = require('../utils/createChartImage');
+const { AttachmentBuilder } = require('discord.js');
 
 module.exports = async (messages) => {
     const timeData = Array(24).fill(0);
@@ -55,6 +57,8 @@ module.exports = async (messages) => {
     for (const key of sortedLeaderboard.keys()) {
         leaderboardString += key + ": " + sortedLeaderboard.get(key) + "\n";
     }
+
+    await createChartImage(timeData);
 
     return {timeString, leaderboardString};
 };
