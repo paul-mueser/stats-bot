@@ -1,6 +1,7 @@
-const {EmbedBuilder, ApplicationCommandOptionType} = require('discord.js');
+const {EmbedBuilder, ApplicationCommandOptionType, AttachmentBuilder} = require('discord.js');
 const fetchAllMessages = require('../../utils/fetchAllMessages');
 const quoteContentHandler = require('../../handlers/quoteContentHandler');
+const quoteTimeHandler = require('../../handlers/quoteTimeHandler');
 
 module.exports = {
     callback: async (client, interaction) => {
@@ -16,13 +17,16 @@ module.exports = {
         }
 
         const messageData = await quoteContentHandler(allMessages, actualAuthor);
+        await quoteTimeHandler(allMessages, actualAuthor);
+        const attachment = new AttachmentBuilder('chart.png', {name: 'chart.png'});
 
         const embed = new EmbedBuilder()
             .setTitle(`Geistige Tiefflieger von ${actualAuthor}`)
             .setDescription(messageData)
-            .setColor(0x9361e4);
+            .setColor(0x9361e4)
+            .setImage('attachment://chart.png');
 
-        await interaction.editReply({embeds: [embed]});
+        await interaction.editReply({embeds: [embed], files: [attachment]});
     },
 
     name: 'quoteby',
