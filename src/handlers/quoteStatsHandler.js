@@ -1,5 +1,4 @@
 const divideQuote = require('../utils/divideQuote');
-const createChartImage = require('../utils/createChartImage');
 
 module.exports = async (messages) => {
     const leaderboard = new Map();
