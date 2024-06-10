@@ -18,7 +18,9 @@ module.exports = async (client, message) => {
         mentionable: role.mentionable
     });
 
-    role.delete('I had to.');
+    role.delete('I had to.')
+        .then(deleted => console.log(`Deleted role ${deleted.name}`))
+        .catch(console.error);
 
     let messages = await fetchAllMessages(client, message.guild.channels.cache.find(channel => channel.name === 'zitate').id);
 
@@ -33,6 +35,7 @@ module.exports = async (client, message) => {
         if (!m.content) continue;
 
         let content = m.content;
+        if (content.indexOf("~") < 0) continue;
         if (m.author.id === global.botId) {
             content = content.substring(content.indexOf(":") + 1).trim();
         }
@@ -61,6 +64,7 @@ module.exports = async (client, message) => {
 
     const sortedLeaderboard = new Map([...leaderboard.entries()].sort((a, b) => b[1] - a[1]));
     let author = sortedLeaderboard.keys().next().value;
+    if (!author) return;
 
     if (author.startsWith('<@') && author.endsWith('>')) {
         author = author.substring(2, author.length - 1);
