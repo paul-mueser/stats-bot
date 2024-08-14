@@ -12,7 +12,7 @@ module.exports = (quote) => {
         content = data[0].trim();
     }
     if (data[1] !== null) {
-        author = data[1].substring(data[1].indexOf("[") + 1, data[1].indexOf("]"));
+        author = data[1].substring(data[1].indexOf("[") + 1, data[1].indexOf("]")).trim();
     }
 
     return {content, author};
