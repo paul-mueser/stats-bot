@@ -5,7 +5,7 @@ module.exports = async (client, channelId) => {
     // Create message pointer
     let message = await channel.messages;
     if (message) {
-        message = message.fetch({ limit: 1 })
+        message = message.fetch({limit: 1})
             .then(messagePage => (messagePage.size === 1 ? messagePage.first() : null));
     } else {
         return messages;
@@ -15,7 +15,7 @@ module.exports = async (client, channelId) => {
 
     while (message) {
         await channel.messages
-            .fetch({ limit: 100, before: message.id })
+            .fetch({limit: 100, before: message.id})
             .then(messagePage => {
                 messagePage.forEach(msg => messages.push(msg));
 

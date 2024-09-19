@@ -14,10 +14,7 @@ module.exports = {
             ignoredChannels = interaction.options.getString('ignored-channels').split(',').map(channel => channel.trim());
         }
 
-        let toGo = interaction.guild.channels.cache.size;
-
         for (const channel of interaction.guild.channels.cache) {
-            console.log(toGo-- + " channels to go");
             if (ignoredChannels.includes(channel[1].name)) {
                 continue;
             }
@@ -78,7 +75,7 @@ module.exports = {
     options: [
         {
             name: 'ignored-channels',
-            description: 'List all channel names to ignore here.',
+            description: 'List all channel names (comma seperated) to ignore here.',
             type: ApplicationCommandOptionType.String,
         },
     ],

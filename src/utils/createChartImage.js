@@ -1,10 +1,10 @@
-const { ChartJSNodeCanvas } = require('chartjs-node-canvas');
+const {ChartJSNodeCanvas} = require('chartjs-node-canvas');
 const fs = require('fs');
 
 module.exports = async (timeData) => {
     const width = 800; // Define the image width
     const height = 600; // Define the image height
-    const canvasRenderService = new ChartJSNodeCanvas({ width, height });
+    const canvasRenderService = new ChartJSNodeCanvas({width, height});
 
     // Define the chart configuration
     const configuration = {
