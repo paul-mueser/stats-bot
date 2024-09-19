@@ -5,7 +5,7 @@ module.exports = async (messages) => {
     let leaderboardString = "";
 
     for (const message of messages) {
-        if(!message.createdAt) continue;
+        if (!message.createdAt) continue;
 
         let content = message.content;
         const barIndex = content.indexOf("|") > 0 ? content.indexOf("|") : content.length;
