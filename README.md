@@ -6,7 +6,7 @@
 
 ## [](#general)General
 
-This is a basic Discord bot primarily used for gathering statistics from a channel in a Discord server calles
+This is a basic Discord bot primarily used for gathering statistics from a channel in a Discord server called
 "Zitate", where users can post quotes. The bot can do a variety of things, such as counting the number of quotes per
 user and per hour of the day.
 
