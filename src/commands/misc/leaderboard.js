@@ -77,6 +77,7 @@ module.exports = {
             name: 'ignored-channels',
             description: 'List all channel names (comma seperated) to ignore here.',
             type: ApplicationCommandOptionType.String,
+            required: false,
         },
     ],
 };

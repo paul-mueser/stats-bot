@@ -81,6 +81,7 @@ module.exports = {
             name: 'reason',
             description: 'The reason for the timeout.',
             type: ApplicationCommandOptionType.String,
+            required: false,
         },
     ],
     permissionsRequired: [PermissionFlagsBits.MuteMembers],

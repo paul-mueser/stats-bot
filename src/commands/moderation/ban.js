@@ -56,6 +56,7 @@ module.exports = {
             name: 'reason',
             description: 'The reason you want to ban.',
             type: ApplicationCommandOptionType.String,
+            required: false,
         },
     ],
     permissionsRequired: [PermissionFlagsBits.BanMembers],
