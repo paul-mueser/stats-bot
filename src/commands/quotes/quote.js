@@ -55,21 +55,25 @@ module.exports = {
             name: 'situation',
             description: 'The situation in which this was said.',
             type: ApplicationCommandOptionType.String,
+            required: false,
         },
         {
             name: 'content2',
             description: 'The quote content 2.',
             type: ApplicationCommandOptionType.String,
+            required: false,
         },
         {
             name: 'author2',
             description: 'Who said this 2.',
             type: ApplicationCommandOptionType.String,
+            required: false,
         },
         {
             name: 'situation2',
             description: 'The situation in which this was said 2.',
             type: ApplicationCommandOptionType.String,
+            required: false,
         },
     ],
 };
