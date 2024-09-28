@@ -4,7 +4,7 @@ const divideQuote = require("../../utils/divideQuote");
 const {quoteLeaderRoleName} = require('../../../config.json');
 
 module.exports = async (client, message) => {
-    if (!message.inGuild() || message.channel.id !== message.guild.channels.cache.find(channel => channel.name === 'zitate').id) return;
+    if (!message.inGuild() || message.channel.id !== (message.guild.channels.cache.find(channel => channel.name === 'zitate')?.id || null)) return;
 
     let role = message.guild.roles.cache.find(role => role.name === quoteLeaderRoleName);
     if (!role) return;
