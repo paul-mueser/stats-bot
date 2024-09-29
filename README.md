@@ -7,7 +7,7 @@
 ## [](#general)General
 
 This is a basic Discord bot primarily used for gathering statistics from a channel in a Discord server called
-"Zitate", where users can post quotes. The bot can do a variety of things, such as counting the number of quotes per
+"zitate" or "quotes", where users can post quotes. The bot can do a variety of things, such as counting the number of quotes per
 user and per hour of the day.
 
 ## [](#features)Features
@@ -34,7 +34,7 @@ TOKEN=xxx
 BOT_ID=xxx
 ```
 
-### [](#developing-and-testing)Developing & testing
+### [](#developing--testing)Developing & testing
 
 For testing, you can change the `testServer` and `devs` properties in `config.json` file to your test server id and
 your developers discord id's. There you can also change the `quoteLeaderRoleName`, which is the role for the person
@@ -43,7 +43,7 @@ Now you can run the bot with the argument `--test` to start the bot in
 development mode, where new commands only get registered on your testServer.  
 Pay attention, that the already registered commands will still be available on all servers.
 
-## [](#running)Running the bot
+## [](#running-the-bot)Running the bot
 To run the bot, you need to open a terminal in the root directory of the project and run the command
 `node src/index.js`.
 
@@ -67,7 +67,7 @@ with the command `docker run -d -e TOKEN=xxx -e BOT_ID=xxx paulmueser/statsbotdo
 
 ### [](#quotes)Quotes
 
-- authorstats - replies with the authorstats of "Zitate"
+- authorstats - replies with the authorstats of "zitate"/"quotes"
 - quote {date} {content} {author} - create a new quote
 - quoteby {author} - replies with the quotes of a specific person
-- stats - replies with the stats of "Zitate"
+- stats - replies with the stats of "zitate"/"quotes"

@@ -4,7 +4,7 @@ const serverAuthorStatsHandler = require('../../handlers/leaderboardHandler');
 
 module.exports = {
     callback: async (client, interaction) => {
-        interaction.deferReply();
+        await interaction.deferReply();
         let retVal = new Map();
         let authorString = "";
         let leaderboardString = "";
@@ -41,7 +41,11 @@ module.exports = {
                 }
             }
         }
-        console.log("Channels done");
+        
+        if (retVal.size === 0) {
+            await interaction.editReply("No messages found.");
+            return;
+        }
 
         const sortedLeaderboard = new Map([...retVal.entries()].sort((a, b) => b[1] - a[1]));
 

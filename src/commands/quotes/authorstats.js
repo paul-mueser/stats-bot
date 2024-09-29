@@ -4,9 +4,15 @@ const {EmbedBuilder} = require("discord.js");
 
 module.exports = {
     callback: async (client, interaction) => {
-        interaction.deferReply();
-        const allMessages = await fetchAllMessages(client, interaction.guild.channels.cache.find(channel => channel.name === 'zitate').id);
+        await interaction.deferReply();
+        const channelId = interaction.guild.channels.cache.find(channel => channel.name === 'zitate')?.id || (interaction.guild.channels.cache.find(channel => channel.name === 'quotes')?.id || null);
+        const allMessages = await fetchAllMessages(client, channelId);
 
+        if (allMessages.length === 0) {
+            await interaction.editReply('No messages found.');
+            return;
+        }
+        
         let messageData = await quoteAuthorHandler(allMessages);
 
         const embed = new EmbedBuilder()

@@ -1,4 +1,8 @@
 module.exports = async (messages) => {
+    if (messages.length === 0) {
+        return "No messages found.";
+    }
+    
     const leaderboard = new Map();
     let leaderboardString = "";
 
