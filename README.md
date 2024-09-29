@@ -1,4 +1,4 @@
-![Publish Docker Image](https://github.com/paul-mueser/stats-bot/actions/workflows/docker-image.yml/badge.svg)
+[![Publish Docker Image](https://github.com/paul-mueser/stats-bot/actions/workflows/docker-image.yml/badge.svg)](https://github.com/paul-mueser/stats-bot/actions/workflows/docker-image.yml)
 [![GitHub release](https://img.shields.io/github/release/paul-mueser/stats-bot.svg)](https://github.com/paul-mueser/stats-bot/releases)
 [![GitHub license](https://badgen.net/github/license/paul-mueser/stats-bot)](https://github.com/paul-mueser/stats-bot/blob/main/LICENSE)
 
@@ -51,6 +51,8 @@ If you want to run the bot in development mode, you can run the command `node sr
 
 If you don't want to develop the bot, you can also run the bot as a [docker container from docker hub](https://hub.docker.com/r/paulmueser/statsbotdocker)
 with the command `docker run -d -e TOKEN=xxx -e BOT_ID=xxx paulmueser/statsbotdocker`.
+
+If you don't want to run the bot yourself you can directly [invite the bot](https://discord.com/oauth2/authorize?client_id=1207711066247921766) to your server.
 
 ## [](#commands)Commands
 
