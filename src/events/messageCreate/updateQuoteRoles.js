@@ -4,8 +4,14 @@ const divideQuote = require("../../utils/divideQuote");
 const {quoteLeaderRoleName} = require('../../../config.json');
 
 module.exports = async (client, message) => {
-    if (!message.inGuild() || message.channel.id !== (message.guild.channels.cache.find(channel => channel.name === 'zitate')?.id || null)) return;
-
+    if (!message.inGuild() ||
+        (message.channel.id !== (message.guild.channels.cache.find(channel => channel.name === 'zitate')?.id || null) &&
+        message.channel.id !== (message.guild.channels.cache.find(channel => channel.name === 'quotes')?.id || null))) {
+        return;
+    }
+    
+    const channelId = message.guild.channels.cache.find(channel => channel.name === 'zitate')?.id || (message.guild.channels.cache.find(channel => channel.name === 'quotes')?.id || null);
+    
     let role = message.guild.roles.cache.find(role => role.name === quoteLeaderRoleName);
     if (!role) return;
 
@@ -22,7 +28,7 @@ module.exports = async (client, message) => {
         .then(deleted => console.log(`Deleted role ${deleted.name}`))
         .catch(console.error);
 
-    let messages = await fetchAllMessages(client, message.guild.channels.cache.find(channel => channel.name === 'zitate').id);
+    let messages = await fetchAllMessages(client, channelId);
 
     const date = new Date();
     const start = startOfWeek(date, {weekStartsOn: 1});

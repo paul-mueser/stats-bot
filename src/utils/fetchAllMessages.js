@@ -1,4 +1,8 @@
 module.exports = async (client, channelId) => {
+    if (!channelId) {
+        return [];
+    }
+    
     const channel = client.channels.cache.get(channelId);
     let messages = [];
 

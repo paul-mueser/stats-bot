@@ -5,8 +5,14 @@ const quoteTimeHandler = require('../../handlers/quoteTimeHandler');
 
 module.exports = {
     callback: async (client, interaction) => {
-        interaction.deferReply();
-        const allMessages = await fetchAllMessages(client, interaction.guild.channels.cache.find(channel => channel.name === 'zitate').id);
+        await interaction.deferReply();
+        const channelId = interaction.guild.channels.cache.find(channel => channel.name === 'zitate')?.id || (interaction.guild.channels.cache.find(channel => channel.name === 'quotes')?.id || null);
+        const allMessages = await fetchAllMessages(client, channelId);
+
+        if (allMessages.length === 0) {
+            await interaction.editReply('No messages found.');
+            return;
+        }
 
         const leaderboard = await quoteStatsHandler(allMessages);
         await quoteTimeHandler(allMessages);
