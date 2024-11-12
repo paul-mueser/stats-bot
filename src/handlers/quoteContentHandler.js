@@ -23,7 +23,7 @@ module.exports = async (messages, author) => {
             }
             const quoteData = divideQuote(part);
 
-            if (quoteData.author === author) {
+            if (quoteData.author.trim() === author) {
                 quotes.push(msg.replaceAll("_", ", "));
                 break;
             }
