@@ -25,6 +25,9 @@ module.exports = async (messages) => {
     const sortedLeaderboard = new Map([...leaderboard.entries()].sort((a, b) => b[1] - a[1]));
 
     for (const key of sortedLeaderboard.keys()) {
+        if (leaderboardString.length + key.length + sortedLeaderboard.get(key).toString().length >= 4096) {
+            break;
+        }
         leaderboardString += `${key}: ` + sortedLeaderboard.get(key) + "\n";
     }
 
