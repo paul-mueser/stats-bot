@@ -43,6 +43,9 @@ module.exports = async (messages, author) => {
     quotes.reverse();
 
     for (const quote of quotes) {
+        if (returnValue.length + quote.length >= 4096) {
+            break;
+        }
         returnValue += quote + "\n\n";
     }
 

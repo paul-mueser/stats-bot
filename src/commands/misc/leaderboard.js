@@ -53,6 +53,12 @@ module.exports = {
             if (!await interaction.guild.members.fetch(key.id).then(() => true).catch(() => false)) {
                 continue;
             }
+            if (authorString.length + key.length >= 1014) {
+                break;
+            }
+            if (leaderboardString.length + sortedLeaderboard.get(key).toString().length >= 1014) {
+                break;
+            }
 
             authorString += `${key}:\n`;
             leaderboardString += sortedLeaderboard.get(key) + "\n";
