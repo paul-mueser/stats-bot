@@ -24,7 +24,7 @@ module.exports = async (messages, author) => {
             const quoteData = divideQuote(part);
 
             if (quoteData.author.trim() === author) {
-                quotes.push(msg.replaceAll("_", ", "));
+                quotes.push("[" + msg.replaceAll("_", ", ") + "](" + message.url + ")");
                 break;
             }
 
@@ -33,7 +33,7 @@ module.exports = async (messages, author) => {
             if (actualAuthor.startsWith('<@') && actualAuthor.endsWith('>')) {
                 actualAuthor = actualAuthor.substring(2, actualAuthor.length - 1);
                 if (global.idNamePairs[actualAuthor] === author) {
-                    quotes.push(msg);
+                    quotes.push("[" + msg + "](" + message.url + ")");
                     break;
                 }
             }
