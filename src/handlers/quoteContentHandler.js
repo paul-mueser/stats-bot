@@ -33,7 +33,7 @@ module.exports = async (messages, author) => {
             if (actualAuthor.startsWith('<@') && actualAuthor.endsWith('>')) {
                 actualAuthor = actualAuthor.substring(2, actualAuthor.length - 1);
                 if (global.idNamePairs[actualAuthor] === author) {
-                    quotes.push("[" + msg + "](" + message.url + ")");
+                    quotes.push("[" + msg.replace("<@" + actualAuthor + ">", global.idNamePairs[actualAuthor]) + "](" + message.url + ")");
                     break;
                 }
             }
