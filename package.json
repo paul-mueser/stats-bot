@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "chartjs-node-canvas": "^5.0.0",
-    "date-fns": "^4.1.0",
+    "date-fns": "^4.2.1",
     "discord.js": "^14.26.4",
     "dotenv": "^17.4.2",
     "ms": "^2.1.3",
