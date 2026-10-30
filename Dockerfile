@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:25
 ENV TZ="Europe/Berlin"
 WORKDIR /usr/src/stats-bot
 COPY package*.json ./
